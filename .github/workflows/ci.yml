@@ -1,0 +1,77 @@
+name: CI
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  js-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - name: Install dependencies
+        run: bun install
+      - name: Lint with Biomejs
+        run: bun biome ci
+  py-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+      - name: Install dependencies
+        run: |
+          pip install uv --disable-pip-version-check
+          uv export --no-hashes | uv pip install -r - --system
+      - name: Lint with Ruff
+        run: |
+          ruff check --output-format github
+          ruff format --check --diff
+      - name: Type check with Pyright
+        run: |
+          yarn global add pyright
+          pyright
+  typos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: crate-ci/typos@master
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - name: Install dependencies
+        run: bun install
+      - name: Build CJS bundle
+        run: bun build src/index.ts --format cjs --outfile out.js
+      - name: Reformat with Biomejs
+        run: bun format
+        continue-on-error: true
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cjs-bundle
+          path: out.js
+  publish:
+    runs-on: ubuntu-latest
+    needs: [build, js-checks, py-checks, typos]
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: cjs-bundle
+          path: src/readability/impl/parse.cjs
+      - name: Build package
+        run: |
+          pip install uv --disable-pip-version-check
+          uv build
+      - name: Publish to PyPI
+        continue-on-error: true
+        run: uv publish
