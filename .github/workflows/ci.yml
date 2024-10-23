@@ -44,7 +44,7 @@ jobs:
       - name: Install dependencies
         run: bun install
       - name: Build CJS bundle
-        run: bun build src/index.ts --format cjs --outfile out.js
+        run: bun build src/index.ts --format cjs --outfile parse.cjs
       - name: Reformat with Biomejs
         run: bun format
         continue-on-error: true
@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: cjs-bundle
-          path: out.js
+          path: parse.cjs
   publish:
     runs-on: ubuntu-latest
     needs: [build, js-checks, py-checks, typos]
@@ -67,7 +67,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: cjs-bundle
-          path: src/readability/impl/parse.cjs
+          path: src/readability/impl
       - name: Build package
         run: |
           pip install uv --disable-pip-version-check

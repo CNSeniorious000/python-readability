@@ -1,6 +1,6 @@
 [project]
 name = "python-readability"
-version = "0.0.1"
+version = "0.0.2"
 description = "@mozilla/readability for Python"
 readme = "README.md"
 requires-python = ">=3.8"
