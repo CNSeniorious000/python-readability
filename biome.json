@@ -1,0 +1,54 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "vcs": {
+    "clientKind": "git",
+    "enabled": true,
+    "useIgnoreFile": true
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space"
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "complexity": {
+        "noThisInStatic": {
+          "fix": "safe",
+          "level": "info"
+        },
+        "useLiteralKeys": {
+          "fix": "safe",
+          "level": "info"
+        },
+        "useOptionalChain": {
+          "fix": "safe",
+          "level": "info"
+        }
+      },
+      "performance": {
+        "noDelete": "warn"
+      },
+      "style": {
+        "noUnusedTemplateLiteral": {
+          "fix": "safe",
+          "level": "info"
+        },
+        "noUselessElse": {
+          "fix": "safe",
+          "level": "info"
+        },
+        "noVar": {
+          "fix": "safe",
+          "level": "info"
+        },
+        "useDefaultParameterLast": "warn",
+        "useTemplate": {
+          "fix": "safe",
+          "level": "info"
+        }
+      }
+    }
+  }
+}
