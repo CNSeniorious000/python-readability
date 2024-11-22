@@ -1,3 +1,3 @@
 from .api.parse import Article, parse
 
-__all__ = ["parse", "Article"]
+__all__ = ["Article", "parse"]
