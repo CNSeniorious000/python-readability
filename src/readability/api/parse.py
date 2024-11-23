@@ -50,6 +50,7 @@ def parse(html: str) -> Article: ...
 def parse(
     html: str,
     *,
+    base_uri: str | None = None,
     debug: bool = False,
     max_elems_to_parse: int = 0,
     nb_top_candidates: int = 5,
@@ -66,8 +67,9 @@ def parse(html, **kwargs):
     """
     Runs readability.
 
-    Args:
+    Parameters:
         html (str): The HTML content to parse.
+        base_uri (str, optional): The base URI for the document. Used to resolve the `href` and `src` props.
         debug (bool, optional): Whether to enable logging. Defaults to False.
         max_elems_to_parse (int, optional): The maximum number of elements to parse. Defaults to 0.
         nb_top_candidates (int, optional): The number of top candidates to consider when analyzing how tight the competition is among candidates. Defaults to 5.

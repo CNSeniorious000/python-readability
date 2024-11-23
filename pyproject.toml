@@ -1,6 +1,6 @@
 [project]
 name = "python-readability"
-version = "0.0.2.1"
+dynamic = ["version"]
 description = "@mozilla/readability for Python"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -36,3 +36,10 @@ extend-select = [
     "SIM",  # flake8-simplify
     "SLF",  # flake8-self
 ]
+
+[tool.pdm.version]
+source = "file"
+path = "src/readability/__init__.py"
+
+[tool.ruff]
+line-length = 200

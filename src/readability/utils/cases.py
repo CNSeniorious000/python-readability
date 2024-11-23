@@ -1,5 +1,5 @@
 def to_camel_case(snake: str):
-    components = snake.replace("json_ld", "JSONLD").split("_")
+    components = snake.replace("json_ld", "JSONLD").replace("base_uri", "baseURI").split("_")
     return components[0] + "".join(x.title() for x in components[1:])
 
 

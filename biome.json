@@ -7,6 +7,7 @@
   },
   "formatter": {
     "enabled": true,
+    "lineWidth": 200,
     "indentStyle": "space"
   },
   "linter": {
