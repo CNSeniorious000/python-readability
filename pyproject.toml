@@ -5,7 +5,7 @@ description = "@mozilla/readability for Python"
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
-    "pythonmonkey-fork~=1.0.0 ; sys_platform != 'emscripten'",
+    "pythonmonkey-fork>=1.0,<1.2 ; sys_platform != 'emscripten'",
 ]
 
 [build-system]
