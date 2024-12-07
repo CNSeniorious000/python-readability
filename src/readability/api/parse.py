@@ -1,11 +1,13 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
-from typing import Optional, overload
+from typing import overload
 
 from ..impl import parse as _parse
 from ..utils.cases import to_camel_cases, to_snake_cases
 
 
-@dataclass(slots=True, kw_only=True)
+@dataclass
 class Article:
     """The object that `parse` returns.
 
@@ -13,34 +15,34 @@ class Article:
     it also contains the extracted content.
     """
 
-    title: Optional[str]
+    title: str | None
     """`title` (string): the title of the article."""
 
-    byline: Optional[str]
+    byline: str | None
     """`byline` (string): the author of the article."""
 
-    dir: Optional[str]
+    dir: str | None
     """`dir` (string): the direction of the text in the article."""
 
-    lang: Optional[str]
+    lang: str | None
     """`lang` (string): the language of the article."""
 
-    content: Optional[str]
+    content: str | None
     """`content` (string): the article content."""
 
-    text_content: Optional[str]
+    text_content: str | None
     """`textContent` (string): the article content, stripped of all HTML tags."""
 
-    length: Optional[int]
+    length: int | None
     """`length` (number): the number of characters in the article content."""
 
-    excerpt: Optional[str]
+    excerpt: str | None
     """`excerpt` (string): a short excerpt of the article content."""
 
-    site_name: Optional[str]
+    site_name: str | None
     """`siteName` (string): the name of the site where the article was published."""
 
-    published_time: Optional[str]
+    published_time: str | None
     """`publishedTime` (string): the time the article was published."""
 
 
