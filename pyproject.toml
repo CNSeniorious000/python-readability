@@ -5,7 +5,17 @@ description = "@mozilla/readability for Python"
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
+]
+
+[project.optional-dependencies]
+pythonmonkey = [
     "pythonmonkey-fork~=1.0 ; sys_platform != 'emscripten'",
+]
+mini-racer = [
+    "mini-racer~=0.12 ; sys_platform != 'emscripten'",
+]
+stpyv8 = [
+    "stpyv8~=13.1 ; sys_platform != 'emscripten'",
 ]
 
 [build-system]
@@ -14,8 +24,11 @@ build-backend = "pdm.backend"
 
 [tool.uv]
 dev-dependencies = [
+    # "mini-racer~=0.12",
     "pyodide-py",
+    # "pythonmonkey-fork~=1.0",
     "ruff~=0.8.0",
+    # "stpyv8~=13.1",
 ]
 
 [tool.ruff.lint]
