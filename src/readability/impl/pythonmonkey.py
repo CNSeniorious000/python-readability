@@ -1,9 +1,9 @@
-from pathlib import Path
-
 from pythonmonkey import JSObjectProxy, null
 from pythonmonkey.require import require
 
-js_parse = require(str(Path(__file__, "../parse.cjs").resolve()))["parse"]
+from .common import cjs_file
+
+js_parse = require(str(cjs_file))["parse"]
 
 
 def parse(html: str, options: dict):

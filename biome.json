@@ -28,6 +28,9 @@
           "level": "info"
         }
       },
+      "security": {
+        "noGlobalEval": "off"
+      },
       "performance": {
         "noDelete": "warn"
       },

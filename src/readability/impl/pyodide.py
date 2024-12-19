@@ -1,13 +1,9 @@
-from pathlib import Path
-
 from js import eval as js_eval  # type: ignore
 from pyodide.ffi import JsProxy, to_js
 
-cjs = Path(__file__).parent / "parse.cjs"
+from .common import parse_getter
 
-script = f"( ()=>{{ const module = {{}}; {cjs.read_text()}; return module.exports.parse }})()"
-
-js_parse = js_eval(script)
+js_parse = js_eval(parse_getter())
 
 
 def parse(html: str, options: dict):
