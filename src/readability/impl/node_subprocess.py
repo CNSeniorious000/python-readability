@@ -37,6 +37,7 @@ class JsEvaluationError(Exception):
 
 def eval_js(code: str):
     print(dumps(code), file=process.stdin, flush=True)
+    assert process.stdout is not None, process
     ret: Union[Ok, Err] = loads(process.stdout.readline())
     if error := ret.get("error"):
         raise JsEvaluationError(error)
