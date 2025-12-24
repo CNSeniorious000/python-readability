@@ -10,7 +10,7 @@ node_bin = which("node") or which("deno") or which("bun")
 
 assert node_bin is not None, "Node.js, Deno or Bun executable need to be installed to use the subprocess implementation"
 
-process = Popen([str(node_bin), str(Path(__file__, "../stdio-worker.js").resolve())], stdout=PIPE, stdin=PIPE, text=True, encoding="utf-8")
+process = Popen([node_bin, str(Path(__file__, "../stdio-worker.js").resolve())], stdout=PIPE, stdin=PIPE, text=True, encoding="utf-8")
 
 
 class Ok(TypedDict):
