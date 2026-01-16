@@ -17,6 +17,6 @@
   "dependencies": {
     "@paoramen/cheer-reader": "npm:@jsr/paoramen__cheer-reader@0.1.2",
     "cheerio": "1.0.0",
-    "htmlparser2": "9.1.0"
+    "htmlparser2": "10.0.0"
   }
 }
